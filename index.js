@@ -49,9 +49,15 @@ const questions = [
         default:'N/A'
     },
     {
+        type: 'input',
+        message :'What command should be used to run tests?',
+        name:'test'
+
+    },
+    {
         type:'list',
         message: 'What licence are you using?',
-        name:'licence',
+        name:'license',
         choices: ['MIT','Apache 2.0','GNU v3','BSD 2','BSD 3','Mozzila Public Licence','None']
     },
     {
