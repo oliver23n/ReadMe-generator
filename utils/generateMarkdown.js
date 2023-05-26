@@ -1,21 +1,35 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+//create the badge image
+renderLicenseBadge = (license) => license == 'None' ? '' : `![alt badge](https://img.shields.io/badge/licence-${license}-blue)`;
 
-renderLicenseBadge = (license) => license == 'None' ? '' : `![alt text](https://img.shields.io/badge/licence-${license}-blue)`;
+//creates the link for the corresponding license
+function renderLicenseLink(license) {
+   switch(license){
+    case 'None':
+      return '';
+    case 'MIT':
+       return 'https://opensource.org/license/mit/';
+    case 'Apache 2.0':
+       return  'https://www.apache.org/licenses/LICENSE-2.0';
+    case 'GNU v3':
+       return 'https://www.gnu.org/licenses/gpl-3.0.en.html';
+    case 'BSD 2':
+       return 'https://opensource.org/license/bsd-2-clause/';
+    case 'BSD 3':
+       return 'https://opensource.org/license/bsd-3-clause/';
+    case 'Mozzila Public Licence':
+       return 'https://www.mozilla.org/en-US/MPL/';
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
+   }    
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
-
-// TODO: Create a function to generate markdown for README
+}
+//fills the license section of the README 
+function renderLicenseSection(license) {
+  return license == 'None' ? '' : `This Project is licenced under ${license} license.`
+}
 function generateMarkdown(data) {
   return `# ${data.title}
 
-${renderLicenseBadge(data.license)}
+[${renderLicenseBadge(data.license)}](${renderLicenseLink(data.license)})
 
 ## Description
 
@@ -24,7 +38,7 @@ ${data.description}
 ---
 
 ## Table Of Contents
-
+                             
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -53,7 +67,7 @@ ${data.usage}
 
 ## License
 
-This Project is licenced under ${data.license} license.
+${renderLicenseSection(data.license)}
 
 ---
 
@@ -81,4 +95,4 @@ If you have any questions you can reach me at [${data.email}](mailto:${data.emai
 `;
 }
 
-module.exports = {generateMarkdown};
+module.exports = generateMarkdown;
